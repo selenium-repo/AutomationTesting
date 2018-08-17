@@ -1,0 +1,60 @@
+'**********************************Function to verify the functionality of "Treatment Diagnosis" screen.******************************************
+Function Therapy_Print_Verification()
+With Browser("micclass:=Browser").Page("micclass:=page")
+if .webelement("html id:=print_label","innertext:=Print","index:=1").exist(2) then
+.webelement("html id:=print_label","innertext:=Print","index:=1").Click
+statusreport micpass,"Verify that Print screen should appear","Verify that Print screen is appeared","TS_054_TC_01"
+
+If .webelement("innertext:=Submit","visible:=True","index:=1").exist(2) Then
+.webelement("innertext:=Submit","visible:=True","index:=1").Click
+wait(5)
+Call report_save_pdf_other_withoutbtnprint_Therapy_Print()
+Browser("application version:=internet explorer .*","title:=.*OptimumClinicals.*").close	
+statusreport micpass,"Verify that report should be opened and saved successfully","Verify that report should be opened and saved successfully","TS_054_TC_02"
+else
+statusreport micfail,"Verify that report should be opened and saved successfully","Verify that report is not opened and saved successfully","TS_054_TC_02"
+End If
+
+Call select_value_from_webedit_dropdown("therapyReports","WebEdit","INPUT","3")
+wait(2)
+if .webelement("innertext:=Submit","visible:=True","index:=1").exist(2) then
+.webelement("innertext:=Submit","visible:=True","index:=1").Click
+wait(5)
+Call report_save_pdf_other_withoutbtnprint_Therapy_Print()
+Browser("application version:=internet explorer .*","title:=.*OptimumClinicals.*").close
+statusreport micpass,"Verify that report should be opened and saved successfully","Verify that report should be opened and saved successfully","TS_054_TC_03"
+else
+statusreport micfail,"Verify that report should be opened and saved successfully","Verify that report is not opened and saved successfully","TS_054_TC_03"
+End if 
+
+Call select_value_from_webedit_dropdown("therapyReports","WebEdit","INPUT","4")
+wait(2)
+if .webelement("innertext:=Submit","visible:=True","index:=1").exist(2) then
+.webelement("innertext:=Submit","visible:=True","index:=1").click
+wait(5)
+Call report_save_pdf_other_withoutbtnprint_Therapy_Print()
+Browser("application version:=internet explorer .*","title:=.*OptimumClinicals.*").close
+statusreport micpass,"Verify that report should be opened and saved successfully","Verify that report should be opened and saved successfully","TS_054_TC_04"
+else
+statusreport micfail,"Verify that report should be opened and saved successfully","Verify that report is not opened and saved successfully","TS_054_TC_04"
+End If
+Call select_value_from_webedit_dropdown("therapyReports","WebEdit","INPUT","5")
+wait(2)
+if .webelement("innertext:=Submit","visible:=True","index:=1").exist(2) then
+.webelement("innertext:=Submit","visible:=True","index:=1").click
+wait(5)
+Call report_save_pdf_other_withoutbtnprint_Therapy_Print()
+Browser("application version:=internet explorer .*","title:=.*OptimumClinicals.*").close
+statusreport micpass,"Verify that report should be opened and saved successfully","Verify that report should be opened and saved successfully","TS_054_TC_05"
+else
+statusreport micfail,"Verify that report should be opened and saved successfully","Verify that report is not opened and saved successfully","TS_054_TC_05"
+End If
+.webelement("innertext:=Contents","outertext:=Contents").Click
+else
+statusreport micfail,"Verify that Print screen should appear","Verify that Print screen is not appeared","TS_054_TC_01"
+End if
+End With
+End Function
+
+
+
